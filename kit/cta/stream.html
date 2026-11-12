@@ -29,7 +29,7 @@ body { margin: 0; background: #0F0F0F; }
   <div class="abs" id="icon"><img src="../assets/tiktok.png"></div>
   <div class="abs" id="live"><span><i id="dot"></i>LIVE</span></div>
   <div class="abs" id="l1">Күн сайын</div>
-  <div class="abs" id="clock">22:00</div>
+  <div class="abs" id="clock">23:00</div>
   <div class="abs" id="l2">Тікелей эфир</div>
   <div class="abs" id="sub">
     <div>Сұрағыңды эфирде <b>қой</b></div>
@@ -56,7 +56,7 @@ window.render = function(t){
   const c=(t-1.15)/0.6; const el=$('clock'); el.style.opacity=cl(c*3);
   const s = c<1 ? 1.8-0.8*eo(c) : 1+0.05*Math.sin(cl((t-1.75)/0.3)*Math.PI);
   el.style.transform=`scale(${s})`;
-  if(c<1){ const m=Math.floor(eo(c)*22); el.textContent = String(m).padStart(2,'0')+':00'; } else el.textContent='22:00';
+  if(c<1){ const m=Math.floor(eo(c)*23); el.textContent = String(m).padStart(2,'0')+':00'; } else el.textContent='23:00';
   pop($('l2'),t,1.85);
   const kids=$('sub').children; for(let i=0;i<kids.length;i++) pop(kids[i],t,2.3+i*0.3,40);
   const z = 1+0.025*cl((t-2.8)/3.2); $('stage').style.transform=`scale(${z})`;

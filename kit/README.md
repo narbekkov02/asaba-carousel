@@ -11,7 +11,7 @@
 - Озвучка жоқ. Дауыс тек продюсер аудио жіберсе ғана.
 
 ## TikTok
-- TikTok нұсқасы = Instagram видеосы + соңына «Күн сайын 22:00 тікелей эфир» картасы (`cta/stream.html`, 6 сек):
+- TikTok нұсқасы = Instagram видеосы + соңына «Күн сайын 23:00 тікелей эфир» картасы (`cta/stream.html`, 6 сек):
   `python3 kit/tools/add_stream.py posts/<күн>/video.mp4 posts/<күн>/video_tiktok.mp4`. Instagram-ға бұл карта керек емес.
 - TikTok-қа ТЕК продюсер нақты команда бергенде саласың (Metricool арқылы). Бекітуге екі нұсқаны да жібер.
 
