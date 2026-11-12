@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #0F0F0F; }
+#stage { width: 1080px; height: 1920px; position: relative; overflow: hidden; font-family: Montserrat, sans-serif; color: #fff;
+  background: radial-gradient(circle at 50% 46%, #B3141A 0%, #7A0A0E 45%, #0F0F0F 100%); }
+#handle { position: absolute; top: 160px; left: 72px; font-size: 28px; font-weight: 600; color: rgba(255,255,255,.8); }
+#scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; perspective: 2400px; perspective-origin: 540px 860px; }
+#book { position: absolute; left: 540px; top: 860px; width: 0; height: 0; transform-style: preserve-3d; }
+#inner { position: absolute; transform-style: preserve-3d; }
+.face { position: absolute; backface-visibility: hidden; }
+.leaf { position: absolute; left: 0; top: 4px; transform-style: preserve-3d; transform-origin: 0 50%; }
+.paper { position: absolute; inset: 0; backface-visibility: hidden; background:
+  linear-gradient(#F8F6F1,#F8F6F1) padding-box;
+  border-radius: 0 6px 6px 0; overflow: hidden; }
+.paper::after { content: ''; position: absolute; left: 34px; right: 30px; top: 46px; bottom: 46px;
+  background: repeating-linear-gradient(#F8F6F1 0 14px, #CFCAC0 14px 18px); opacity: .9; }
+.paper.back { transform: rotateY(180deg); border-radius: 6px 0 0 6px; }
+.paper.shade { box-shadow: inset 18px 0 30px -18px rgba(0,0,0,.35); }
+.chip { position: absolute; display: flex; align-items: center; gap: 16px; background: #fff; color: #141414; border-radius: 20px; padding: 18px 26px; font-size: 34px; font-weight: 800; opacity: 0; white-space: nowrap; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+.chip i { width: 18px; height: 18px; border-radius: 50%; background: #E0262D; flex-shrink: 0; display: block; }
+.chip b { color: #9B0E12; font-weight: 900; }
+#cta { position: absolute; left: 72px; right: 72px; top: 1270px; display: flex; flex-direction: column; align-items: center; gap: 22px; opacity: 0; }
+</style>
+</head>
+<body>
+<div id="stage">
+<div id="handle">@nurbek_burkitbay</div>
+<div id="glow" style="position:absolute;left:290px;top:1180px;width:500px;height:60px;border-radius:50%;background:rgba(0,0,0,.45);filter:blur(18px)"></div>
+<div id="scene"><div id="book"><div id="inner"></div></div></div>
+
+<div class="chip" id="k0" style="left:72px;top:250px"><i></i><b>12</b> той сценарийі</div>
+<div class="chip" id="k1" style="left:560px;top:330px"><i></i>Тілек пен бата</div>
+<div class="chip" id="k2" style="left:110px;top:410px"><i></i>Әзіл мен той ойындары</div>
+<div class="chip" id="k3" style="left:72px;top:1240px"><i></i>Тіл байлығы — сөздік қор</div>
+<div class="chip" id="k4" style="left:470px;top:1340px"><i></i>Есте сақтаудың <b>10</b> тәсілі</div>
+<div class="chip" id="k5" style="left:72px;top:1440px"><i></i>Жеке бренд пен стиль</div>
+<div class="chip" id="k6" style="left:200px;top:1540px;background:#E0262D;color:#fff"><i style="background:#fff"></i>1 айда 1 млн табудың <span style="font-weight:900">7 техникасы</span></div>
+
+<div id="cta">
+<div style="font-size:44px;font-weight:600">Толығы — кітапта</div>
+<div style="font-size:78px;font-weight:900;text-transform:uppercase;line-height:1;white-space:nowrap">«Асабалық өнер»</div>
+<div id="ctaBox" style="margin-top:10px;background:#fff;color:#141414;border-radius:28px;padding:26px 40px;font-size:46px;font-weight:800">Комментке <span style="color:#9B0E12;font-weight:900;font-size:64px">«+»</span> қалдыр</div>
+</div>
+</div>
+
+<script>
+const W=360, H=522, T=46, N=16;
+const inner=document.getElementById('inner');
+let html='';
+// back cover
+html+=`<div class="face" style="left:0;top:0;width:${W}px;height:${H}px;background:#7A0A0E;border-radius:4px 10px 10px 4px;transform:translateZ(${-T/2}px) rotateY(180deg);display:flex;align-items:center;justify-content:center"><div style="font-size:30px;font-weight:900;color:#fff;text-transform:uppercase;text-align:center;line-height:1.2">Нұрбек<br>Бүркітбай</div></div>`;
+// spine
+html+=`<div class="face" style="left:${-T/2}px;top:0;width:${T}px;height:${H}px;background:#9B0E12;transform:rotateY(-90deg);display:flex;align-items:center;justify-content:center"><div style="transform:rotate(-90deg);white-space:nowrap;font-size:22px;font-weight:900;letter-spacing:.06em">АСАБАЛЫҚ ӨНЕР</div></div>`;
+// page edges
+html+=`<div class="face" style="left:${W-4-T/2}px;top:4px;width:${T-4}px;height:${H-8}px;background:repeating-linear-gradient(90deg,#F4F1EA 0 2px,#D9D4C9 2px 3px);transform:rotateY(90deg)"></div>`;
+html+=`<div class="face" style="left:0;top:${4-T/2}px;width:${W-4}px;height:${T-4}px;background:repeating-linear-gradient(#F4F1EA 0 2px,#D9D4C9 2px 3px);transform:rotateX(90deg)"></div>`;
+html+=`<div class="face" style="left:0;top:${H-4-T/2}px;width:${W-4}px;height:${T-4}px;background:repeating-linear-gradient(#F4F1EA 0 2px,#D9D4C9 2px 3px);transform:rotateX(-90deg)"></div>`;
+// static right page (bottom of stack)
+html+=`<div class="face" style="left:0;top:4px;width:${W-6}px;height:${H-8}px;background:#F8F6F1;border-radius:0 6px 6px 0;transform:translateZ(${-T/2+3}px);box-shadow:inset 22px 0 34px -20px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#141414">
+<div style="font-size:24px;font-weight:800;letter-spacing:.12em;color:#9B0E12">МАЗМҰНЫ</div>
+<div id="cnt" style="font-size:150px;font-weight:900;line-height:1;margin-top:10px;color:#9B0E12">0</div>
+<div style="font-size:34px;font-weight:900;text-transform:uppercase">бет</div>
+<div style="margin-top:22px;font-size:22px;font-weight:700;color:#4A4A4A;text-align:center;line-height:1.4">3 бөлім<br>12 сценарий</div></div>`;
+// leaves
+for(let i=0;i<N;i++){
+  html+=`<div class="leaf" id="L${i}" style="width:${W-6}px;height:${H-8}px"><div class="paper shade"></div><div class="paper back"></div></div>`;
+}
+// front cover
+html+=`<div id="cover" style="position:absolute;left:0;top:0;width:${W}px;height:${H}px;transform-style:preserve-3d;transform-origin:0 50%">
+<div class="face" style="inset:0;width:${W}px;height:${H}px;background:url(cover.png) center/cover;border-radius:4px 10px 10px 4px;box-shadow:inset 6px 0 10px -4px rgba(0,0,0,.35)"></div>
+<div class="face" style="inset:0;width:${W}px;height:${H}px;background:#9B0E12;border-radius:10px 4px 4px 10px;transform:rotateY(180deg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+<div style="font-size:22px;font-weight:700;opacity:.85">Нұрбек Бүркітбай</div><div style="font-size:40px;font-weight:900;text-transform:uppercase;text-align:center;line-height:1.05">Асабалық<br>өнер</div><div style="width:60px;height:5px;background:#fff;margin-top:6px"></div><div style="font-size:20px;font-weight:600;opacity:.85">250 бет</div></div>
+</div>`;
+inner.innerHTML=html;
+
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>{x=cl(x);return 1-Math.pow(1-x,3);};
+const eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;};
+const back=x=>{x=cl(x);const c1=1.6,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);};
+const lerp=(a,b,p)=>a+(b-a)*p;
+const seg=(t,a,b)=>cl((t-a)/(b-a));
+
+window.render=function(t){
+  // ---- book transform
+  let x=0,y=0,z=0,rx=0,ry=0,rz=0,s=1,shift=-W/2;
+  if(t<1.3){ const p=back(seg(t,0,1.3)); x=lerp(760,0,p); y=lerp(760,0,p); z=lerp(-1400,0,eo(seg(t,0,1.3))); ry=lerp(-140,-25,eo(seg(t,0,1.3))); rz=lerp(28,0,eo(seg(t,0,1.3))); rx=lerp(20,8,p); }
+  else if(t<3.0){ const p=eio(seg(t,1.3,3.0)); ry=lerp(-25,335,p); rx=8; y=-Math.sin(p*Math.PI)*30; }
+  else { ry=lerp(-25,0,eio(seg(t,3.0,3.7))); rx=lerp(8,4,eio(seg(t,3.0,3.7))); }
+  // zoom + shift to open
+  const zIn=eio(seg(t,3.0,3.8)), zOut=eio(seg(t,11.2,12.0));
+  s=lerp(1,1.25,zIn); shift=lerp(-W/2,0,zIn);
+  if(t>=11.2){ s=lerp(1.25,0.92,zOut); shift=lerp(0,-W/2,zOut); y=lerp(0,-230,zOut); ry=lerp(0,-18,zOut); rx=lerp(4,10,zOut); }
+  if(t>=12){ const f=Math.sin((t-12)*2.2); y=-230+f*10; ry=-18+Math.sin((t-12)*1.4)*6; }
+  $('book').style.transform=`translate3d(${x}px,${y}px,${z}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${s})`;
+  $('inner').style.transform=`translate(${shift}px,${-H/2}px)`;
+  $('glow').style.opacity = t<1.3? eo(seg(t,0.6,1.3)) : (t>=11.2? lerp(1,0.4,zOut):1);
+  // ---- cover
+  let cov=0;
+  if(t>=3.7 && t<11.0) cov=-178*eio(seg(t,3.7,4.4));
+  if(t>=11.0) cov=-178*(1-eio(seg(t,11.0,11.45)));
+  $('cover').style.transform=`translateZ(${T/2}px) rotateY(${cov}deg)`;
+  // ---- leaves: fyr forward 4.4..6.1, back 9.35..10.0
+  for(let i=0;i<N;i++){
+    const zi=T/2-3-i*2.4, zl=T/2+2+i*0.6;
+    let p=eio(seg(t,4.4+i*0.095,4.4+i*0.095+0.3));
+    if(t>=10.35){ const j=N-1-i; p=1-eio(seg(t,10.35+j*0.04,10.35+j*0.04+0.2)); }
+    const ang=-179.5*p + Math.sin(p*Math.PI)*-6;
+    const zz=lerp(zi,zl,p);
+    const bend = Math.sin(p*Math.PI)*0;
+    $('L'+i).style.transform=`translateZ(${zz}px) rotateY(${ang}deg)`;
+  }
+  // ---- counter
+  $('cnt').textContent=Math.round(250*eo(seg(t,6.0,7.4)));
+  // ---- chips
+  for(let k=0;k<7;k++){
+    const a=6.3+k*0.42; const p=back(seg(t,a,a+0.4)); const out=t>=10.3? 1-eo(seg(t,10.3,10.7)):1;
+    const el=$('k'+k); el.style.opacity=cl(seg(t,a,a+0.15))*out; el.style.transform=`scale(${lerp(0.4,1,p)}) translateY(${(1-out)*20}px)`;
+  }
+  // ---- CTA
+  const c=seg(t,11.9,12.4); $('cta').style.opacity=eo(c); $('cta').style.transform=`translateY(${(1-eo(c))*60}px)`;
+  const pulse=t>12.6? 1+0.04*Math.sin((t-12.6)*6):1; $('ctaBox').style.transform=`scale(${pulse})`;
+};
+window.render(0);
+</script>
+</body>
+</html>

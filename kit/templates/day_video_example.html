@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #0F0F0F; }
+#stage { width: 1080px; height: 1920px; position: relative; overflow: hidden; background: #0F0F0F; font-family: Montserrat, sans-serif; color: #fff; }
+.abs { position: absolute; }
+#cam { position: absolute; inset: 0; transform-origin: 540px 960px; }
+#handle { position: absolute; top: 160px; left: 72px; font-size: 28px; font-weight: 600; color: rgba(255,255,255,.75); }
+#bar { position: absolute; left: 0; top: 0; height: 10px; background: #E0262D; }
+.hl { position: absolute; left: 72px; width: 936px; opacity: 0; transform-origin: left center; font-weight: 900; text-transform: uppercase; line-height: 1.02; }
+.card { position: absolute; left: 72px; width: 936px; top: 600px; background: #fff; color: #141414; border-radius: 36px; padding: 70px 56px 56px; opacity: 0; box-shadow: 0 30px 60px rgba(0,0,0,.45); }
+.card .q { position: absolute; top: -56px; left: 44px; background: #E0262D; color: #fff; border-radius: 22px; padding: 0 22px; font-size: 120px; font-weight: 900; line-height: 1.05; }
+.card .ln { display: block; font-size: 46px; font-weight: 700; line-height: 1.38; opacity: 0; }
+.card .ln b { color: #9B0E12; font-weight: 900; }
+.tag { position: absolute; left: 72px; top: 250px; display: flex; align-items: center; gap: 24px; opacity: 0; }
+.tag .ic { width: 120px; height: 120px; border-radius: 30px; background: #E0262D; display: flex; align-items: center; justify-content: center; }
+.tag .tx { display: flex; flex-direction: column; gap: 4px; }
+.tag .n { font-size: 30px; font-weight: 800; color: #E0262D; }
+.tag .t { font-size: 64px; font-weight: 900; text-transform: uppercase; line-height: 1; }
+.dots { position: absolute; left: 72px; top: 1560px; display: flex; gap: 14px; opacity: 0; }
+.dots i { width: 60px; height: 10px; border-radius: 5px; background: rgba(255,255,255,.25); display: block; }
+.save { position: absolute; right: 72px; top: 1540px; background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.3); border-radius: 999px; padding: 14px 26px; font-size: 30px; font-weight: 800; opacity: 0; }
+</style>
+</head>
+<body>
+<div id="stage">
+<div id="bgr" class="abs" style="inset:0;background:radial-gradient(circle at 50% 40%, #B3141A 0%, #6E0A0E 55%, #1A0405 100%);opacity:0"></div>
+<svg id="rays" class="abs" width="1080" height="1920" viewBox="0 0 1080 1920" style="left:0;top:0;opacity:.0">
+<defs><linearGradient id="ry" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+<polygon id="r1" points="470,-50 610,-50 900,1920 180,1920" fill="url(#ry)"/>
+</svg>
+<div id="parts"></div>
+<div id="cam">
+<!-- hook -->
+<div class="hl" id="h1" style="top:300px"><span style="font-size:58px;white-space:nowrap">Микрофонды алдың.</span></div>
+<div class="hl" id="h2" style="top:400px"><span style="font-size:96px;color:#E0262D">Алғашқы<br>10 секунд —</span></div>
+<div class="hl" id="h3" style="top:610px"><span style="font-size:96px">бәрін шешеді.</span></div>
+<div class="hl" id="h4" style="top:300px"><span style="font-size:60px">Тойды ашатын</span></div>
+<div class="hl" id="h5" style="top:380px"><span style="font-size:330px;line-height:.85;color:#E0262D">3</span></div>
+<div class="hl" id="h6" style="top:690px"><span style="font-size:110px">дайын<br>сөз</span></div>
+<div class="hl" id="h7" style="top:960px"><span style="display:inline-block;background:#fff;color:#0F0F0F;border-radius:24px;padding:16px 30px 20px;font-size:56px">жаттап ал</span></div>
+
+<!-- 3 openings -->
+<div class="tag" id="t1"><div class="ic"><svg width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="14" r="5.5"/><path d="M7.5 5.5L9 3h6l1.5 2.5L12 8z"/></svg></div><div class="tx"><span class="n">№1 · 1/3</span><span class="t">Үйлену той</span></div></div>
+<div class="card" id="c1"><span class="q">«</span>
+<span class="ln">Армысыздар, <b>құрметті қауым!</b></span>
+<span class="ln">Бүгін екі жастың бақыты бір шаңырақтың астында тоғысқан қасиетті кеш.</span>
+<span class="ln">Осы кештің шырайын келтіретін — <b>сіздердің шын пейілдеріңіз.</b></span>
+<span class="ln"><b>Тойымыз құтты болсын!</b></span></div>
+
+<div class="tag" id="t2"><div class="ic"><svg width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div><div class="tx"><span class="n">№2 · 2/3</span><span class="t">Қыз ұзату</span></div></div>
+<div class="card" id="c2"><span class="q">«</span>
+<span class="ln">Қадірлі <b>ағайын!</b></span>
+<span class="ln">Бүгін бұл үйдің еркесі, ата-анасының мейірімімен өскен аяулы қызымыз ұзатылғалы отыр.</span>
+<span class="ln">Қуаныш пен сағыныш қатар келген <b>бұл кешті бірге ажарлайық!</b></span></div>
+
+<div class="tag" id="t3"><div class="ic"><svg width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V13a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8"/><path d="M4 16c2 1.5 4 1.5 5.3 0s4-1.5 5.4 0 4 1.5 5.3 0"/><path d="M3 21h18"/><path d="M12 11V7"/><path d="M12 4.5c.8.8.8 1.7 0 2.5-.8-.8-.8-1.7 0-2.5z"/></svg></div><div class="tx"><span class="n">№3 · 3/3</span><span class="t">Мерейтой</span></div></div>
+<div class="card" id="c3"><span class="q">«</span>
+<span class="ln">Құрметті <b>қонақтар!</b></span>
+<span class="ln">Бүгін біз бір адамның ғана емес, <b>тұтас бір ғұмырдың мерейін</b> тойлаймыз.</span>
+<span class="ln">Мерейтой иесіне шынайы ықыласымызды білдірейік —</span>
+<span class="ln"><b>қол соғып қарсы алыңыздар!</b></span></div>
+
+<!-- rule -->
+<div class="hl" id="r1t" style="top:300px"><span style="font-size:60px;color:#E0262D">Бір ереже:</span></div>
+<div class="hl" id="r2t" style="top:400px"><span style="font-size:92px">Асықпа.</span></div>
+<div class="hl" id="r3t" style="top:520px"><span style="font-size:92px">Қонаққа қара.</span></div>
+<div class="hl" id="r4t" style="top:640px"><span style="font-size:92px">Күліп айт.</span></div>
+<div class="hl" id="r5t" style="top:840px"><span style="display:inline-block;background:#fff;color:#0F0F0F;border-radius:24px;padding:18px 30px 22px;font-size:48px;line-height:1.2">Тойдың көңілін <span style="color:#9B0E12">алғашқы сөз</span> ашады</span></div>
+
+<div class="dots" id="dots"><i id="d1"></i><i id="d2"></i><i id="d3"></i></div>
+<div class="save" id="save" style="display:flex;align-items:center;gap:12px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Сақтап ал</div>
+</div>
+<div id="flash" class="abs" style="inset:0;background:#fff;opacity:0"></div>
+<div id="bar"></div>
+<div id="handle">@nurbek_burkitbay</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>{x=cl(x);return 1-Math.pow(1-x,3);};
+const bk=x=>{x=cl(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);};
+const seg=(t,a,b)=>cl((t-a)/(b-a));
+const lerp=(a,b,p)=>a+(b-a)*p;
+// particles
+let ph=''; for(let i=0;i<40;i++){ ph+=`<div class="abs pt" data-x="${(i*263)%1080}" data-y="${(i*397)%1920}" data-s="${0.4+((i*37)%10)/10}" style="width:${4+(i%4)*2}px;height:${4+(i%4)*2}px;border-radius:50%;background:#fff;opacity:${0.05+(i%5)*0.03}"></div>`; } $('parts').innerHTML=ph;
+// timeline
+const HOOK=[['h1',0.2,3.4],['h2',1.0,3.4],['h3',1.9,3.4],['h4',3.5,6.4],['h5',3.9,6.4],['h6',4.4,6.4],['h7',5.2,6.4]];
+const OP=[ // tag, card, start, end
+ ['t1','c1',6.5,17.0],['t2','c2',17.0,26.5],['t3','c3',26.5,36.5]];
+const RULE=[['r1t',36.6,42.0],['r2t',37.2,42.0],['r3t',38.0,42.0],['r4t',38.8,42.0],['r5t',39.8,42.0]];
+const CUTS=[3.5,6.5,17.0,26.5,36.6];
+window.T_END=42.0;
+function pop(el,t,a,b){ if(t<a||t>=b){el.style.opacity=0;return;} const p=bk(seg(t,a,a+0.32)); el.style.opacity=Math.min(cl((t-a)/0.08),cl((b-t)/0.15)); el.style.transform=`scale(${lerp(1.3,1,p)}) translateY(${(1-eo(seg(t,a,a+0.25)))*30}px)`; }
+window.render=function(t){
+ $('bar').style.width=(t/T_END*1080)+'px';
+ $('bgr').style.opacity = (t>=3.5&&t<6.5)||(t>=36.6)? 1:0;
+ $('rays').style.opacity = 0.6+0.4*Math.sin(t*0.8);
+ $('r1').setAttribute('transform',`rotate(${Math.sin(t*0.5)*6} 540 -50)`);
+ document.querySelectorAll('.pt').forEach(e=>{ const x=+e.dataset.x, y=+e.dataset.y, s=+e.dataset.s; e.style.left=(x+Math.sin(t*0.3+y)*20)+'px'; e.style.top=(((y - t*40*s)%1920)+1920)%1920+'px'; });
+ let fl=0; CUTS.forEach(a=>{ if(t>=a&&t<a+0.16) fl=Math.max(fl,0.3*(1-(t-a)/0.16)); }); $('flash').style.opacity=fl;
+ let last=0; [0.2,1.0,1.9,3.5,3.9,4.4,5.2,6.5,17.0,26.5,36.6,37.2,38.0,38.8,39.8].forEach(s=>{ if(s<=t) last=s; });
+ const pk=1+0.035*Math.exp(-(t-last)/0.14), slow=1+0.02*Math.sin(t*0.5);
+ $('cam').style.transform=`scale(${pk*slow})`;
+ HOOK.forEach(([id,a,b])=>pop($(id),t,a,b));
+ RULE.forEach(([id,a,b])=>pop($(id),t,a,b));
+ OP.forEach(([tg,cd,a,b],k)=>{
+  pop($(tg),t,a,b);
+  const c=$(cd); if(t<a+0.3||t>=b){ c.style.opacity=0; } else { c.style.opacity=Math.min(cl((t-a-0.3)/0.25),cl((b-t)/0.2)); c.style.transform=`translateY(${(1-eo(seg(t,a+0.3,a+0.8)))*80}px)`; }
+  const lines=c.querySelectorAll('.ln'); const span=(b-a-1.6)/lines.length;
+  lines.forEach((ln,i)=>{ const s=a+0.8+i*Math.min(2.4,span); ln.style.opacity=cl((t-s)/0.35); ln.style.transform=`translateY(${(1-eo(seg(t,s,s+0.4)))*20}px)`; });
+  $('d'+(k+1)).style.background = t>=a ? '#E0262D' : 'rgba(255,255,255,.25)';
+ });
+ $('dots').style.opacity = (t>=6.5&&t<36.5)?1:0;
+ $('save').style.opacity = (t>=7.5&&t<36.5)? cl((t-7.5)/0.4):0;
+};
+
+// ---- for kit/tools/make_video.py: total length of this part (before the 3D book CTA) and SFX cues
+window.SFX=[
+ [0.2,'thud'],[1.0,'pop'],[1.9,'pop'],[3.5,'whoosh'],[3.9,'thud'],[4.4,'pop'],[5.2,'pop'],
+ [6.5,'whoosh'],[6.8,'whooshS'],[17.0,'whoosh'],[17.3,'whooshS'],[26.5,'whoosh'],[26.8,'whooshS'],
+ [7.3,'tick'],[9.3,'tick'],[11.3,'tick'],[13.3,'tick'],[17.8,'tick'],[20.4,'tick'],[23.0,'tick'],[27.3,'tick'],[29.3,'tick'],[31.3,'tick'],[33.3,'tick'],
+ [7.5,'popS'],[36.6,'whoosh'],[37.2,'thud'],[38.0,'thud'],[38.8,'thud'],[39.8,'pop']];
+window.render(0);
+</script>
+</body>
+</html>
