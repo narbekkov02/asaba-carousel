@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #0F0F0F; }
+#stage { width: 1080px; height: 1920px; position: relative; overflow: hidden; background: #0F0F0F; font-family: Montserrat, sans-serif; color: #fff; }
+.abs { position: absolute; }
+#cam { position: absolute; inset: 0; transform-origin: 540px 960px; }
+#handle { position: absolute; top: 160px; left: 72px; font-size: 28px; font-weight: 600; color: rgba(255,255,255,.75); }
+#bar { position: absolute; left: 0; top: 0; height: 10px; background: #E0262D; }
+.hl { position: absolute; left: 72px; width: 936px; opacity: 0; transform-origin: left center; font-weight: 900; text-transform: uppercase; line-height: 1.02; }
+.card { position: absolute; left: 72px; width: 936px; top: 600px; background: #fff; color: #141414; border-radius: 36px; padding: 70px 56px 56px; opacity: 0; box-shadow: 0 30px 60px rgba(0,0,0,.45); }
+.card .q { position: absolute; top: -56px; left: 44px; background: #E0262D; color: #fff; border-radius: 22px; padding: 0 22px; font-size: 120px; font-weight: 900; line-height: 1.05; }
+.card .ln { display: block; font-size: 46px; font-weight: 700; line-height: 1.38; opacity: 0; }
+.card .ln b { color: #9B0E12; font-weight: 900; }
+.tag { position: absolute; left: 72px; top: 250px; display: flex; align-items: center; gap: 24px; opacity: 0; }
+.tag .ic { width: 120px; height: 120px; border-radius: 30px; background: #E0262D; display: flex; align-items: center; justify-content: center; }
+.tag .tx { display: flex; flex-direction: column; gap: 4px; }
+.tag .n { font-size: 30px; font-weight: 800; color: #E0262D; }
+.tag .t { font-size: 64px; font-weight: 900; text-transform: uppercase; line-height: 1; }
+.dots { position: absolute; left: 72px; top: 1560px; display: flex; gap: 14px; opacity: 0; }
+.dots i { width: 60px; height: 10px; border-radius: 5px; background: rgba(255,255,255,.25); display: block; }
+.save { position: absolute; right: 130px; top: 1540px; background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.3); border-radius: 999px; padding: 14px 26px; font-size: 30px; font-weight: 800; opacity: 0; }
+
+.card .ln { transform-origin: left center; }
+.card .ln .w { display:inline-block; opacity:0; }
+.ghost { position:absolute; right:40px; top:1020px; font-size:620px; font-weight:900; color:rgba(255,255,255,.07); line-height:.8; opacity:0; }
+#wipe { position:absolute; top:-200px; width:700px; height:2400px; background:#E0262D; transform:skewX(-14deg); left:-1600px; }
+#wipe2 { position:absolute; top:-200px; width:180px; height:2400px; background:#fff; transform:skewX(-14deg); left:-1600px; }
+.tag .ic { position:relative; }
+.tag .ring { position:absolute; inset:-10px; border:4px solid #E0262D; border-radius:38px; opacity:0; }
+.streak { position:absolute; height:6px; background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.7)); border-radius:3px; opacity:0; }
+</style>
+</head>
+<body>
+<div id="stage">
+<div id="bgr" class="abs" style="inset:0;background:radial-gradient(circle at 50% 40%, #B3141A 0%, #6E0A0E 55%, #1A0405 100%);opacity:0"></div>
+<svg id="rays" class="abs" width="1080" height="1920" viewBox="0 0 1080 1920" style="left:0;top:0;opacity:.0">
+<defs><linearGradient id="ry" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+<polygon id="r1" points="470,-50 610,-50 900,1920 180,1920" fill="url(#ry)"/>
+</svg>
+<div id="parts"></div><div id="streaks"></div>
+<div id="cam">
+<div class="hl" id="h1" style="top:300px"><span style="font-size:64px;white-space:nowrap">Қыз ұзатуда</span></div>
+<div class="hl" id="h2" style="top:400px"><span style="font-size:100px;color:#E0262D">бүкіл ауылды<br>жылататын<br>сәт...</span></div>
+<div class="hl" id="h3" style="top:760px"><span style="display:inline-block;background:#fff;color:#0F0F0F;border-radius:24px;padding:16px 30px 20px;font-size:58px;line-height:1.15">асабаның<br><span style="color:#9B0E12">бір ауыз сөзі</span></span></div>
+<div class="hl" id="h4" style="top:300px"><span style="font-size:72px">Қоштасу сөзі</span></div>
+<div class="hl" id="h5" style="top:400px"><span style="font-size:330px;line-height:.85;color:#E0262D">5</span></div>
+<div class="hl" id="h6" style="top:700px"><span style="font-size:110px">бөлім</span></div>
+<div class="hl" id="h7" style="top:860px"><span style="display:inline-block;background:#fff;color:#0F0F0F;border-radius:24px;padding:16px 30px 20px;font-size:56px">жаттап ал</span></div>
+<div class="tag" id="t1"><div class="ic"><svg width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1"/><path d="M12 18v4"/><path d="M8 22h8"/></svg></div><div class="tx"><span class="n">№1 · 1/5</span><span class="t">Тыныштық сұра</span></div></div>
+<div class="card" id="c1"><span class="q">«</span>
+<span class="ln">Құрметті ағайын, <b>бір сәт тыңдасаңыздар.</b></span>
+<span class="ln">Бұл шаңырақтың астында бір қыз <b>бүгін соңғы рет</b> отыр.</span>
+<span class="ln">Ертеңнен бастап ол — <b>басқа шаңырақтың келіні.</b></span>
+</div>
+<div class="tag" id="t2"><div class="ic"><svg width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/></svg></div><div class="tx"><span class="n">№2 · 2/5</span><span class="t">Қызға сөз</span></div></div>
+<div class="card" id="c2"><span class="q">«</span>
+<span class="ln">Қарағым, бұл үйдің есігі саған <b>әрқашан ашық.</b></span>
+<span class="ln">Бірақ енді сенің төрің — <b>жаңа шаңырақ.</b></span>
+<span class="ln">Барған жеріңде <b>құт бол, сыйлы бол.</b></span>
+</div>
+<div class="tag" id="t3"><div class="ic"><svg width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div><div class="tx"><span class="n">№3 · 3/5</span><span class="t">Ата-анаға сөз</span></div></div>
+<div class="card" id="c3"><span class="q">«</span>
+<span class="ln">Әке-шеше, бүгін <b>аялап өсірген гүліңізді</b> өз қолыңызбен ұзатып отырсыз.</span>
+<span class="ln">Бұл айырылу емес — <b>жаңа туыстықтың басы.</b></span>
+<span class="ln">Балаңыздың бақыты — <b>сіздің еңбегіңіздің жемісі.</b></span>
+</div>
+<div class="tag" id="t4"><div class="ic"><svg width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20a6 6 0 0 1 12 0"/><path d="M10 20a6 6 0 0 1 12 0"/></svg></div><div class="tx"><span class="n">№4 · 4/5</span><span class="t">Құдаларға аманат</span></div></div>
+<div class="card" id="c4"><span class="q">«</span>
+<span class="ln">Құрметті құдалар, біз сіздерге қыз емес — <b>жүрегімізді беріп отырмыз.</b></span>
+<span class="ln"><b>Қадірлеп ұстаңыздар.</b></span>
+<span class="ln">Бүгіннен бастап ол — <b>сіздің де балаңыз.</b></span>
+</div>
+<div class="tag" id="t5"><div class="ic"><svg width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21L10 3"/><path d="M19 21L14 3"/><path d="M12 6v2"/><path d="M12 11v2"/><path d="M12 16v3"/></svg></div><div class="tx"><span class="n">№5 · 5/5</span><span class="t">Ақ жол тілеу</span></div></div>
+<div class="card" id="c5"><span class="q">«</span>
+<span class="ln">Ал, қарағым, <b>ақ жол!</b></span>
+<span class="ln">Артыңда — <b>ақ батасын берген</b> әулетің.</span>
+<span class="ln">Алдыңда — <b>бақытты ғұмыр.</b></span>
+</div>
+<div class="hl" id="r1t" style="top:300px"><span style="font-size:60px;color:#E0262D">Бір ереже:</span></div>
+<div class="hl" id="r2t" style="top:400px"><span style="font-size:76px">Асықпа.</span></div>
+<div class="hl" id="r3t" style="top:505px"><span style="font-size:76px">Үзіліс жаса.</span></div>
+<div class="hl" id="r4t" style="top:610px"><span style="font-size:62px">Дауысыңды<br>бәсеңдет.</span></div>
+<div class="hl" id="r5t" style="top:830px"><span style="display:inline-block;background:#fff;color:#0F0F0F;border-radius:24px;padding:18px 30px 22px;font-size:48px;line-height:1.2">Жақсы қоштасу сөзін<br>ана <span style="color:#9B0E12">өмір бойы</span> ұмытпайды</span></div>
+<div class="dots" id="dots"><i id="d1"></i><i id="d2"></i><i id="d3"></i><i id="d4"></i><i id="d5"></i></div>
+<div class="save" id="save" style="display:flex;align-items:center;gap:12px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Сақтап ал</div>
+</div>
+<div id="wipe"></div><div id="wipe2"></div>
+<div id="flash" class="abs" style="inset:0;background:#fff;opacity:0"></div>
+<div id="bar"></div>
+<div id="handle">@nurbek_burkitbay</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>{x=cl(x);return 1-Math.pow(1-x,3);};
+const bk=x=>{x=cl(x);const c1=1.7,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2);};
+const el=x=>{x=cl(x);if(x==0||x==1)return x;return Math.pow(2,-10*x)*Math.sin((x*10-0.75)*2.094)+1;};
+const seg=(t,a,b)=>cl((t-a)/(b-a));
+const lerp=(a,b,p)=>a+(b-a)*p;
+let ph=''; for(let i=0;i<40;i++){ ph+=`<div class="abs pt" data-x="${(i*263)%1080}" data-y="${(i*397)%1920}" data-s="${0.4+((i*37)%10)/10}" style="width:${4+(i%4)*2}px;height:${4+(i%4)*2}px;border-radius:50%;background:#fff;opacity:${0.05+(i%5)*0.03}"></div>`; } $('parts').innerHTML=ph;
+let sh=''; for(let i=0;i<14;i++){ sh+=`<div class="streak" data-y="${150+(i*131)%1650}" data-w="${200+(i*97)%400}" data-d="${(i*0.017)%0.12}"></div>`; } $('streaks').innerHTML=sh;
+const HOOK=[['h1',0.2,3.4],['h2',0.8,3.4],['h3',2.0,3.4],['h4',3.5,6.4],['h5',3.9,6.4],['h6',4.4,6.4],['h7',5.1,6.4]];
+const OP=[['t1','c1',6.5,13.0],['t2','c2',13.0,19.5],['t3','c3',19.5,26.0],['t4','c4',26.0,32.5],['t5','c5',32.5,39.0]];
+const RULE=[['r1t',39.1,45.0],['r2t',39.7,45.0],['r3t',40.4,45.0],['r4t',41.1,45.0],['r5t',42.2,45.0]];
+const CUTS=[3.5,6.5,13.0,19.5,26.0,32.5,39.1];
+window.T_END=45.0;
+function pop(el_,t,a,b){ if(t<a||t>=b){el_.style.opacity=0;return;} const p=bk(seg(t,a,a+0.32)); el_.style.opacity=Math.min(cl((t-a)/0.08),cl((b-t)/0.15)); el_.style.transform=`scale(${lerp(1.3,1,p)}) translateY(${(1-eo(seg(t,a,a+0.25)))*30}px)`; }
+// split card lines into words for the text reveal
+document.querySelectorAll('.card .ln').forEach(ln=>{ const walk=n=>{ [...n.childNodes].forEach(ch=>{ if(ch.nodeType===3){ const f=document.createDocumentFragment(); ch.textContent.split(/(\s+)/).forEach(p=>{ if(!p) return; if(/^\s+$/.test(p)) f.appendChild(document.createTextNode(p)); else { const sp=document.createElement('span'); sp.className='w'; sp.textContent=p; f.appendChild(sp);} }); n.replaceChild(f,ch);} else walk(ch); }); }; walk(ln); });
+window.render=function(t){
+ $('bar').style.width=(t/T_END*1080)+'px';
+ $('bgr').style.opacity = (t>=3.5&&t<6.5)||(t>=39.1)? 1:0;
+ $('rays').style.opacity = 0.6+0.4*Math.sin(t*0.8);
+ $('r1').setAttribute('transform',`rotate(${Math.sin(t*0.5)*6} 540 -50)`);
+ document.querySelectorAll('.pt').forEach(e=>{ const x=+e.dataset.x, y=+e.dataset.y, s=+e.dataset.s; e.style.left=(x+Math.sin(t*0.3+y)*20)+'px'; e.style.top=(((y - t*40*s)%1920)+1920)%1920+'px'; });
+ // dynamic transition: red + white skewed wipe with speed streaks
+ let wl=-1600, w2=-1600, sp=0;
+ CUTS.forEach(a=>{ if(t>=a-0.22&&t<a+0.2){ const p=seg(t,a-0.22,a+0.2); wl=lerp(-900,1300,eo(p)); w2=lerp(-1100,1500,eo(seg(t,a-0.18,a+0.2))); sp=Math.sin(p*Math.PI);} });
+ $('wipe').style.left=wl+'px'; $('wipe2').style.left=w2+'px';
+ document.querySelectorAll('.streak').forEach(e=>{ const y=+e.dataset.y,w=+e.dataset.w,d=+e.dataset.d; e.style.top=y+'px'; e.style.width=w+'px'; e.style.left=(((t*2600+d*9000)%1600)-400)+'px'; e.style.opacity=sp*0.8; });
+ let fl=0; CUTS.forEach(a=>{ if(t>=a&&t<a+0.12) fl=Math.max(fl,0.2*(1-(t-a)/0.12)); }); $('flash').style.opacity=fl;
+ let last=0; [0.2,0.8,2.0,3.5,3.9,4.4,5.1,6.5,13.0,19.5,26.0,32.5,39.1,39.7,40.4,41.1,42.2].forEach(s=>{ if(s<=t) last=s; });
+ const pk=1+0.03*Math.exp(-(t-last)/0.14), slow=1+0.02*Math.sin(t*0.5);
+ $('cam').style.transform=`scale(${pk*slow})`;
+ HOOK.forEach(([id,a,b])=>pop($(id),t,a,b));
+ RULE.forEach(([id,a,b])=>pop($(id),t,a,b));
+ OP.forEach(([tg,cd,a,b],k)=>{
+  pop($(tg),t,a,b);
+  const c=$(cd); if(t<a||t>=b){ c.style.opacity=0; } else { c.style.opacity=Math.min(cl((t-a-0.3)/0.25),cl((b-t)/0.2)); c.style.transform=`translateY(${(1-eo(seg(t,a+0.3,a+0.8)))*80}px)`; }
+  const lines=c.querySelectorAll('.ln'); const span=(b-a-1.6)/lines.length;
+  lines.forEach((ln,i)=>{ const s=a+0.8+i*Math.min(2.4,span); ln.style.opacity=1;
+   const ws=ln.querySelectorAll('.w'), dt=Math.min(0.09,1.2/ws.length);
+   ws.forEach((w,j)=>{ const ws0=s+j*dt, p=seg(t,ws0,ws0+0.35); w.style.opacity=eo(p); w.style.transform=`translateY(${(1-eo(p))*18}px)`; w.style.filter=`blur(${(1-eo(p))*6}px)`; }); });
+  $('d'+(k+1)).style.background = t>=a ? '#E0262D' : 'rgba(255,255,255,.25)';
+ });
+ $('dots').style.opacity = (t>=6.5&&t<39.0)?1:0;
+ $('save').style.opacity = (t>=7.5&&t<39.0)? cl((t-7.5)/0.4):0;
+};
+window.SFX=[[0.2,'thud'],[0.8,'pop'],[2.0,'thud'],[3.3,'whoosh'],[3.9,'thud'],[4.4,'pop'],[5.1,'pop'],[7.5,'popS'],[38.9,'whoosh'],[39.7,'thud'],[40.4,'thud'],[41.1,'thud'],[42.2,'pop']];
+OP.forEach(([tg,cd,a,b])=>{ window.SFX.push([a-0.2,'whoosh'],[a+0.3,'whooshS']); const n=$(cd).querySelectorAll('.ln').length, sp=Math.min(2.4,(b-a-1.6)/n); for(let i=0;i<n;i++) window.SFX.push([+(a+0.8+i*sp).toFixed(2),'tick']); });
+window.render(0);
+</script>
+</body>
+</html>
