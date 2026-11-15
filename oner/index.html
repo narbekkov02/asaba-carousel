@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Асабалық өнер — Нұрбек Бүркітбай</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,700;1,700&family=Montserrat:wght@400;500;600;700;800&display=swap&subset=cyrillic-ext" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#04312C;--green2:#0A433C;--green3:#12584F;
+  --gold:#C8914A;--gold-d:#B47E39;--gold-l:#E2B873;
+  --red:#8C0D0F;--paper:#F5F3EF;--ink:#0F1F1C;--muted:#5B6662;--line:#E3DFD7;
+  --serif:"PT Serif",Georgia,serif;--sans:Montserrat,system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;padding-bottom:86px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.08}
+h2{font-size:30px;margin-bottom:8px}
+.kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px}
+.lead{color:var(--muted);margin-bottom:22px}
+section{padding:56px 0}
+.gold{color:var(--gold-l)}
+
+/* top */
+.top{background:var(--green);color:#fff;border-bottom:1px solid rgba(226,184,115,.25)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{font-family:var(--serif);font-size:17px;letter-spacing:.04em}
+.logo b{color:var(--gold-l)}
+.live{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;border:1px solid var(--gold);color:var(--gold-l);padding:5px 11px;border-radius:30px}
+.dot{width:7px;height:7px;border-radius:50%;background:#E5484D;animation:pulse 1.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(229,72,77,.6)}70%{box-shadow:0 0 0 8px rgba(229,72,77,0)}100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}}
+
+/* hero */
+.hero{background:var(--green);color:#fff;position:relative;overflow:hidden;padding:34px 0 48px}
+.hero .wrap{position:relative;z-index:2}
+.bills{position:absolute;inset:0;z-index:1;pointer-events:none}
+.bill{position:absolute;width:46px;height:22px;border-radius:3px;background:var(--green3);border:1px solid rgba(226,184,115,.35);opacity:.0;animation:fall linear infinite}
+.bill:after{content:"";position:absolute;inset:5px 16px;border-radius:50%;border:1px solid rgba(226,184,115,.4)}
+@keyframes fall{0%{transform:translateY(-40px) rotate(0);opacity:0}10%{opacity:.55}90%{opacity:.55}100%{transform:translateY(720px) rotate(320deg);opacity:0}}
+.hero h1{font-size:46px;letter-spacing:-.5px;margin-bottom:12px}
+.hero h1 span{display:block;color:var(--gold-l)}
+.sub{font-size:17px;font-weight:500;color:#D9E3E0;margin-bottom:24px;max-width:420px}
+.sub b{color:var(--gold-l);font-weight:800}
+.stage{position:relative;margin:4px auto 28px;max-width:360px}
+.stage:before{content:"";position:absolute;left:12%;right:12%;bottom:-6px;height:30px;background:radial-gradient(closest-side,rgba(0,0,0,.45),transparent);filter:blur(2px)}
+.bookimg{display:block;width:100%;height:auto;max-height:420px;object-fit:cover;object-position:50% 60%;border-radius:18px;border:1px solid rgba(226,184,115,.5);animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.author-chip{display:flex;align-items:center;gap:10px;margin-bottom:22px;font-size:14px;color:#D9E3E0}
+.author-chip img{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:50% 12%;border:2px solid var(--gold)}
+.author-chip b{color:#fff;display:block;font-weight:700}
+
+/* buttons */
+.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:var(--gold);color:var(--green);font-family:var(--sans);font-weight:800;font-size:16px;letter-spacing:.02em;text-decoration:none;border:0;border-radius:14px;padding:18px 20px;cursor:pointer;transition:transform .15s ease,background .2s ease}
+.btn:hover{background:var(--gold-l)}
+.btn:active{transform:scale(.98)}
+.btn svg{width:21px;height:21px;flex:none}
+.btn.shine:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 3.6s ease-in-out infinite}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+.btn.ghost{background:transparent;color:var(--gold-l);border:1px solid rgba(226,184,115,.6);margin-top:10px;font-weight:700}
+.btn.ghost:hover{background:rgba(226,184,115,.1)}
+.btn.dark{background:var(--green);color:#fff}
+.btn.dark:hover{background:var(--green2)}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 6px}
+.fact{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 6px;text-align:center}
+.fact b{display:block;font-family:var(--serif);font-size:36px;color:var(--green);line-height:1}
+.fact span{font-size:12px;font-weight:600;color:var(--muted)}
+.list{list-style:none;margin-top:18px}
+.list li{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line);font-weight:500}
+.list li:before{content:"";flex:none;width:22px;height:22px;margin-top:1px;border-radius:50%;background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E2B873' stroke-width='3'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center/14px no-repeat}
+
+/* timer */
+.timer{background:var(--green);color:#fff;border-radius:18px;padding:18px;text-align:center;margin:20px 0 26px;border:1px solid rgba(226,184,115,.4)}
+.tt{font-family:var(--serif);font-size:20px;color:var(--gold-l)}
+.tsub{font-size:13px;color:#B9C8C4;margin:2px 0 12px}
+.tbox{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tbox div{background:var(--green2);border-radius:12px;padding:10px 0;border:1px solid rgba(226,184,115,.2)}
+.tbox b{display:block;font-family:var(--serif);font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums}
+.tbox b.tick{animation:tick .35s ease}
+@keyframes tick{0%{transform:translateY(-4px);opacity:.4}100%{transform:none;opacity:1}}
+.tbox span{font-size:11px;font-weight:600;color:#B9C8C4}
+
+/* packages */
+.pk{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:16px;position:relative;transition:transform .2s ease,box-shadow .2s ease}
+.pk:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(4,49,44,.45)}
+.pk h3{font-size:24px;margin-bottom:12px}
+.pk.vip{background:var(--green);color:#fff;border-color:var(--gold)}
+.pk.vip h3{color:var(--gold-l)}
+.tag{position:absolute;top:-12px;right:18px;background:var(--gold);color:var(--green);font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase}
+.inc{list-style:none;margin:0 0 16px;font-size:14px}
+.inc li{padding:5px 0 5px 24px;position:relative}
+.inc li:before{content:"";position:absolute;left:2px;top:12px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.old{text-decoration:line-through;color:var(--muted);font-size:15px;font-weight:500}
+.pk.vip .old{color:#9FB3AE}
+.price{font-family:var(--serif);font-size:34px;line-height:1.1;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.off{font-family:var(--sans);background:var(--red);color:#fff;font-size:12px;font-weight:800;padding:4px 9px;border-radius:20px}
+.inst{font-size:13px;color:var(--muted);margin:4px 0 16px}
+.pk.vip .inst{color:#B9C8C4}
+.pk .btn{padding:15px;font-size:15px}
+.pk:not(.vip) .btn{background:var(--green);color:#fff}
+.pk:not(.vip) .btn:hover{background:var(--green2)}
+.pk.sel{outline:3px solid var(--gold);outline-offset:3px}
+.small{font-size:13px;text-align:center;color:var(--muted)}
+
+/* order */
+.order{background:var(--green);color:#fff}
+.order h2{color:#fff}
+.order .lead{color:#B9C8C4}
+.form{display:grid;gap:8px}
+.form label{font-weight:700;font-size:14px;margin-top:8px}
+.form input,.form select{font-family:inherit;font-size:17px;padding:15px 16px;border-radius:12px;border:1px solid rgba(226,184,115,.4);background:var(--green2);color:#fff;width:100%;appearance:none;-webkit-appearance:none}
+.form select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E2B873' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:44px}
+.form input::placeholder{color:#7F9893}
+.form input[aria-invalid="true"]{border-color:#FF8A80}
+.err{color:#FFB4AB;font-size:14px}
+.err:empty{display:none}
+.note{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.form .btn{margin-top:14px}
+.hint{font-size:13px;color:#B9C8C4;text-align:center}
+.sum{background:#3B1010;border:1px solid #FF8A80;border-radius:12px;padding:12px 14px;font-size:14px}
+.sum a{color:#fff}
+.ok{background:var(--green2);border:1px solid var(--gold);border-radius:14px;padding:16px;margin-top:14px;animation:rise .4s ease}
+.ok b{color:var(--gold-l)}
+.ok p{font-size:14px;margin:4px 0 8px;color:#D9E3E0}
+.ok a{color:var(--gold-l);font-size:14px}
+.btn[aria-busy="true"]{opacity:.85;cursor:progress}
+.steps{display:grid;gap:10px;margin-top:26px}
+.st{display:flex;gap:12px;align-items:center;background:var(--green2);border:1px solid rgba(226,184,115,.18);border-radius:14px;padding:13px 14px;font-weight:500;font-size:15px}
+.st b{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--gold);color:var(--gold-l);display:flex;align-items:center;justify-content:center;font-family:var(--serif)}
+
+/* author */
+.authorcard{border-radius:22px;overflow:hidden;background:#E9EDF1;position:relative;margin-top:18px}
+.authorcard img{display:block;width:100%;height:auto}
+.acap{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(4,49,44,.94);color:#fff;padding:16px 18px;border-radius:16px;border:1px solid rgba(226,184,115,.45)}
+.acap h3{font-size:22px;color:var(--gold-l)}
+.acap p{font-size:13px;color:#D9E3E0;margin-top:4px}
+
+/* faq */
+details{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:16px 48px 16px 18px;font-weight:700;position:relative}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:24px;color:var(--gold-d);transition:transform .2s}
+details[open] summary:after{transform:translateY(-50%) rotate(45deg)}
+details p{padding:0 18px 16px;color:var(--muted);font-size:15px}
+
+.ben{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.bcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
+.bcard b{display:block;font-family:var(--serif);font-size:17px;margin:10px 0 4px;color:var(--green)}
+.bcard p{font-size:13px;color:var(--muted);line-height:1.45}
+.ico{display:flex;width:42px;height:42px;border-radius:12px;background:var(--green);align-items:center;justify-content:center}
+.ico svg{width:22px;height:22px;fill:none;stroke:var(--gold-l);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.who{display:grid;gap:10px;margin-top:18px}
+.wcard{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:0;padding:16px 18px}
+.wcard b{font-family:var(--serif);font-size:18px;color:var(--green)}
+.wcard p{font-size:14px;color:var(--muted);margin-top:2px}
+.ba{background:var(--green);color:#fff}
+.bagrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.bcol{border-radius:18px;padding:16px}
+.bcol b{font-family:var(--serif);font-size:20px;display:block;margin-bottom:8px}
+.bcol ul{list-style:none;font-size:14px}
+.bcol li{padding:7px 0 7px 22px;position:relative;line-height:1.35}
+.before{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
+.before b{color:#B9C8C4}.before li{color:#B9C8C4}
+.before li:before{content:"×";position:absolute;left:2px;top:5px;color:#E58A80;font-weight:800}
+.after{background:var(--green2);border:1px solid var(--gold)}
+.after b{color:var(--gold-l)}
+.after li:before{content:"✓";position:absolute;left:2px;top:6px;color:var(--gold-l);font-weight:800}
+.moti{background:var(--paper);text-align:center;padding:64px 0}
+.mq{font-family:var(--serif);font-size:30px;line-height:1.2;color:var(--green);margin-bottom:14px}
+.mq span{color:var(--gold-d);font-style:italic}
+.ms{color:var(--muted);font-size:16px;margin:0 auto 24px;max-width:440px}
+footer{text-align:center;font-size:13px;color:var(--muted);padding:28px 0}
+footer a{color:var(--green);font-weight:700}
+
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(245,243,239,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);transition:transform .25s ease}
+.sticky .btn{max-width:560px;margin:0 auto}
+.sticky.hide{transform:translateY(110%)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+.hero .in1{animation:rise .8s ease both}.hero .in2{animation:rise .8s .12s ease both}.hero .in3{animation:rise .8s .24s ease both}.hero .in4{animation:rise .8s .36s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid #FFD27A;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.bill{display:none}}
+@media (min-width:900px){.hero h1{font-size:58px}}
+</style>
+</head>
+<body>
+
+<div class="top"><div class="wrap">
+<span class="logo">Асабалық <b>өнер</b></span>
+<span class="live"><span class="dot"></span>Эфир 23:00</span>
+</div></div>
+
+<header class="hero">
+<div class="bills" id="bills" aria-hidden="true"></div>
+<div class="wrap">
+<h1 class="in1">Асабалық<span>өнер</span></h1>
+<p class="sub in2">1 айда кемі <b>1 млн</b> табудың 7 құпия техникасы. Той жүргізуді үйренгісі келетін жаңадан бастаған асабаларға.</p>
+<div class="author-chip in2"><img src="author.jpg" alt="" width="40" height="40"><div><b>Нұрбек Бүркітбай</b>кітаптың авторы</div></div>
+<div class="stage in3"><img class="bookimg" src="book.jpg" width="800" height="1067" alt="«Асабалық өнер» кітабы, Нұрбек Бүркітбай"></div>
+<div class="in4">
+<a class="btn shine" id="herobtn" data-pkg="Standart (55 000 ₸)" href="#order">Кітапты алу — 55 000 ₸</a>
+<a class="btn ghost" href="#packages">Пакеттерді көру</a>
+</div>
+</div>
+</header>
+
+<section>
+<div class="wrap">
+<span class="kicker rv">Кітапта не бар</span>
+<h2 class="rv">Асабаға керектің бәрі бір кітапта</h2>
+<div class="facts rv">
+<div class="fact"><b data-count="250">250</b><span>бет</span></div>
+<div class="fact"><b data-count="3">3</b><span>бөлім</span></div>
+<div class="fact"><b data-count="12">12</b><span>той сценарийі</span></div>
+</div>
+<ul class="list rv">
+<li>Тойдың барлық түріне дайын сценарийлер</li>
+<li>Тойды ашу, құдаларды қарсы алу сөздері</li>
+<li>Әзілдер мен ойындар</li>
+<li>Табысты асаба болудың 7 құпия техникасы</li>
+</ul>
+</div>
+</section>
+
+<section style="padding-top:0">
+<div class="wrap">
+<span class="kicker rv">Кітап не береді</span>
+<h2 class="rv">Оқып шыққан соң сізде болатыны</h2>
+<div class="ben">
+<div class="bcard rv"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><b>Сахнадағы сенім</b><p>Микрофонды алғанда не айтарыңызды нақты білесіз</p></div>
+<div class="bcard rv"><span class="ico"><svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5zM8 10h8M8 14h8M8 18h5"/></svg></span><b>12 дайын сценарий</b><p>Тойдың әр түріне басынан аяғына дейін</p></div>
+<div class="bcard rv"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H4zM20 5h-4a2 2 0 0 0-2 2"/></svg></span><b>Бай сөздік қор</b><p>Тілек, қарсы алу, тост сөздерінің багажы</p></div>
+<div class="bcard rv"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM8.5 14a4 4 0 0 0 7 0M9 9.5h.01M15 9.5h.01"/></svg></span><b>Әзіл мен ойындар</b><p>Қонақтар жалықпайтын көңілді той</p></div>
+<div class="bcard rv"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span><b>7 құпия техника</b><p>Тапсырыс көбейту, бағаңызды көтеру жолдары</p></div>
+<div class="bcard rv"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg></span><b>Өз стиліңіз</b><p>Біреуді қайталамай, өз атыңызбен танылу</p></div>
+</div>
+</div>
+</section>
+
+<section style="padding-top:0">
+<div class="wrap">
+<span class="kicker rv">Кімге арналған</span>
+<h2 class="rv">Бұл кітап сізге керек, егер…</h2>
+<div class="who">
+<div class="wcard rv"><b>Жаңадан бастап жүрсіз</b><p>Асаба болғыңыз келеді, бірақ неден бастарыңызды білмейсіз</p></div>
+<div class="wcard rv"><b>Музыкант немесе DJ-сіз</b><p>Тойда жүрсіз, енді микрофонды өзіңіз алғыңыз келеді</p></div>
+<div class="wcard rv"><b>Асаба болып жүрсіз</b><p>Материалыңызды толықтырып, жаңа сөздер қосқыңыз келеді</p></div>
+</div>
+</div>
+</section>
+
+<section class="ba">
+<div class="wrap">
+<span class="kicker rv" style="color:var(--gold-l)">Айырмашылық</span>
+<h2 class="rv">Кітапқа дейін және кейін</h2>
+<div class="bagrid rv">
+<div class="bcol before"><b>Дейін</b><ul><li>Сахнаға шығу қорқынышты</li><li>Сөз таппай қаласыз</li><li>Басқа асабаларды қайталайсыз</li><li>Тапсырыс аз, баға төмен</li></ul></div>
+<div class="bcol after"><b>Кейін</b><ul><li>Сенімді жүргізесіз</li><li>Әр сәтке дайын сөз бар</li><li>Өз стиліңіз қалыптасады</li><li>Тапсырыс пен баға өседі</li></ul></div>
+</div>
+</div>
+</section>
+
+<section class="moti" id="moti">
+<div class="wrap">
+<p class="mq rv">Әр танымал асаба да бір кезде <span>алғашқы тойын</span> жүргізген.</p>
+<p class="ms rv">Айырмашылық — дарында емес, дайындықта. Бүгін бастасаңыз, келесі маусымда сіз де сахнада сенімді тұрасыз.</p>
+<a class="btn shine rv" href="#packages">Бүгін бастаймын</a>
+</div>
+</section>
+
+<section style="padding-top:0" id="packages">
+<div class="wrap">
+<span class="kicker rv">Пакеттер</span>
+<h2 class="rv">Өзіңізге ыңғайлысын таңдаңыз</h2>
+<div class="timer rv">
+<div class="tt" id="tt">Қараша айының арнайы бағасы</div>
+<div class="tsub">Айдың соңына дейін қалды</div>
+<div class="tbox" role="timer" aria-live="off" aria-label="Айдың соңына дейін қалған уақыт"><div><b id="td">00</b><span>күн</span></div><div><b id="th">00</b><span>сағат</span></div><div><b id="tm">00</b><span>минут</span></div><div><b id="ts">00</b><span>секунд</span></div></div>
+</div>
+
+<div class="pk rv">
+<h3>Standart</h3>
+<ul class="inc"><li>«Асабалық өнер» кітабы</li><li>12 видео сабақ</li><li>«Ораторға арналған 101 кеңес» (электронды кітапша)</li><li>ASABA PRO жабық тобы</li></ul>
+<div class="old">110 000 ₸</div>
+<div class="price">55 000 ₸ <span class="off">−50%</span></div>
+<div class="inst">Бөліп төлеу: 69 000 ₸</div>
+<a class="btn" data-pkg="Standart (55 000 ₸)" href="#order">Standart таңдау</a>
+</div>
+
+<div class="pk vip rv">
+<span class="tag">Ең тиімді</span>
+<h3>VIP</h3>
+<ul class="inc"><li>«Асабалық өнер» кітабы</li><li>«Ой қамшы» кітабы</li><li>20 видео сабақ</li><li>«Ораторға арналған 101 кеңес» (электронды кітапша)</li><li>Тойға арналған 10 ойын</li><li>ASABA PRO жабық тобы</li></ul>
+<div class="old">224 000 ₸</div>
+<div class="price">112 000 ₸ <span class="off">−50%</span></div>
+<div class="inst">Бөліп төлеу: 140 000 ₸</div>
+<a class="btn shine" data-pkg="VIP (112 000 ₸)" href="#order">VIP таңдау</a>
+</div>
+
+<div class="pk rv">
+<h3>Наставничество</h3>
+<ul class="inc"><li><b>1-ай:</b> теория</li><li><b>2-ай:</b> практика, тойларды Нұрбекпен бірге офлайн жүргізесіз</li><li>«Асабалық өнер» кітабы</li><li>«Ой қамшы» кітабы</li><li>20 видео сабақ</li><li>«Ораторға арналған 101 кеңес» (электронды кітапша)</li><li>Тойға арналған 10 ойын</li><li>ASABA PRO жабық тобы</li></ul>
+<div class="old">1 400 000 ₸</div>
+<div class="price">700 000 ₸ <span class="off">−50%</span></div>
+<div class="inst">Бөліп төлеу: 875 000 ₸</div>
+<a class="btn" data-pkg="Наставничество (700 000 ₸)" href="#order">Наставничество таңдау</a>
+</div>
+<p class="small">Kaspi арқылы бөліп төлеуге болады. Бөліп төлегенде баға өседі.</p>
+</div>
+</section>
+
+<section class="order" id="order">
+<div class="wrap">
+<span class="kicker rv" style="color:var(--gold-l)">Тапсырыс</span>
+<h2 class="rv">1 минутта рәсімдеңіз</h2>
+<p class="lead rv">Атыңызды жазып, пакетті таңдаңыз. Қалғанын WhatsApp-та өзіміз жалғастырамыз.</p>
+<form class="form rv" id="f" novalidate>
+<div id="sum" class="sum" role="alert" tabindex="-1" hidden></div>
+<label for="name">Атыңыз</label>
+<input id="name" type="text" autocomplete="given-name" aria-describedby="name-err" placeholder="Ерлан">
+<div class="err" id="name-err"></div>
+<label for="pkg">Пакет</label>
+<select id="pkg" aria-describedby="pkg-note">
+<option>Standart (55 000 ₸)</option>
+<option>VIP (112 000 ₸)</option>
+<option>Наставничество (700 000 ₸)</option>
+</select>
+<div class="note" id="pkg-note" aria-live="polite"></div>
+<label for="pay">Төлем түрі</label>
+<select id="pay">
+<option>Kaspi бірден</option>
+<option>Kaspi бөліп төлеу</option>
+</select>
+<button class="btn shine" id="sendbtn" type="submit"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2.1 1.3 2.4 1.4.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.1z"/></svg><span id="sendtxt">Тапсырысты WhatsApp-қа жіберу</span></button>
+<p class="hint">WhatsApp дайын хабарламамен ашылады. Тек «Жіберу» батырмасын басасыз.</p>
+</form>
+<div id="ok" class="ok" role="status" aria-live="polite" hidden>
+<b>WhatsApp ашылды</b>
+<p>Хабарламаны жіберіңіз. Kaspi шот 5 минут ішінде телефоныңызға келеді.</p>
+<a id="walink" href="#" target="_blank" rel="noopener">WhatsApp ашылмады ма? Осы жерден ашыңыз</a>
+</div>
+<div class="steps rv">
+<div class="st"><b>1</b>Атыңызды жазып, пакетті таңдайсыз</div>
+<div class="st"><b>2</b>Kaspi шот телефоныңызға келеді</div>
+<div class="st"><b>3</b>Төлейсіз, кітап жолға шығады</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<span class="kicker rv">Автор</span>
+<h2 class="rv">Нұрбек Бүркітбай</h2>
+<div class="authorcard rv">
+<img src="author.jpg" width="700" height="1049" loading="lazy" alt="Нұрбек Бүркітбай">
+<div class="acap"><h3>«Асабалық өнер»</h3><p>кітабының авторы. Күн сайын 23:00-де TikTok-та тікелей эфир жүргізеді.</p></div>
+</div>
+</div>
+</section>
+
+<section style="padding-top:0">
+<div class="wrap">
+<span class="kicker rv">Сұрақ-жауап</span>
+<h2 class="rv" style="margin-bottom:18px">Жиі қойылатын сұрақтар</h2>
+<details class="rv"><summary>Бөліп төлеуге бола ма?</summary><p>Иә, барлық пакетті Kaspi арқылы бөліп төлеуге болады. Бөліп төлеу бағасы әр пакеттің астында жазылған.</p></details>
+<details class="rv"><summary>Төлегеннен кейін не болады?</summary><p>Сізді ASABA PRO жабық тобына қосамыз. Кітап сізге жіберіледі, ал сабақтар мен материалдар топта болады.</p></details>
+<details class="rv"><summary>Мен енді бастап жатырмын. Маған келе ме?</summary><p>Иә, кітап дәл жаңадан бастаған асабаларға арналған: дайын сценарийлер мен сөздерден бастайсыз.</p></details>
+<details class="rv"><summary>Сұрағым болса, кімге жазамын?</summary><p>WhatsApp-қа жазыңыз: +7 708 228 6517.</p></details>
+</div>
+</section>
+
+<footer>Сұрақ болса, WhatsApp-қа жазыңыз: <a href="https://wa.me/77082286517" target="_blank" rel="noopener">+7 708 228 6517</a></footer>
+
+<div class="sticky hide" id="sticky"><a class="btn shine" href="#order" data-pkg="Standart (55 000 ₸)">Кітапты алу — 55 000 ₸</a></div>
+
+<script>
+var PHONE="77082286517";
+var RM=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* falling bills */
+(function(){
+  if(RM)return;var box=document.getElementById("bills");
+  for(var i=0;i<9;i++){var d=document.createElement("span");d.className="bill";
+    d.style.left=(Math.random()*92)+"%";d.style.animationDuration=(9+Math.random()*7)+"s";d.style.animationDelay=(-Math.random()*12)+"s";
+    d.style.transform="scale("+(.7+Math.random()*.6)+")";box.appendChild(d)}
+})();
+
+/* timer */
+(function(){
+  var M=["Қаңтар","Ақпан","Наурыз","Сәуір","Мамыр","Маусым","Шілде","Тамыз","Қыркүйек","Қазан","Қараша","Желтоқсан"];
+  var OFF=5*3600000,last={};
+  function p(n){return (n<10?"0":"")+n}
+  function set(id,v){var el=document.getElementById(id);if(last[id]!==v){el.textContent=v;if(!RM&&last[id]!==undefined){el.classList.remove("tick");void el.offsetWidth;el.classList.add("tick")}last[id]=v}}
+  function tick(){
+    var now=Date.now(),loc=new Date(now+OFF),y=loc.getUTCFullYear(),m=loc.getUTCMonth();
+    var end=Date.UTC(y,m+1,1)-OFF-1000,s=Math.floor(Math.max(0,end-now)/1000);
+    document.getElementById("tt").textContent=M[m]+" айының арнайы бағасы";
+    set("td",p(Math.floor(s/86400)));set("th",p(Math.floor(s%86400/3600)));set("tm",p(Math.floor(s%3600/60)));set("ts",p(s%60));
+  }
+  tick();setInterval(tick,1000);
+})();
+
+/* reveal + count-up */
+(function(){
+  var els=document.querySelectorAll(".rv");
+  function count(root){root.querySelectorAll("[data-count]").forEach(function(b){var t=+b.getAttribute("data-count"),st=null;
+    if(RM){b.textContent=t;return}
+    function f(ts){if(!st)st=ts;var k=Math.min(1,(ts-st)/1100);b.textContent=Math.round(t*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)}requestAnimationFrame(f)})}
+  if(!("IntersectionObserver" in window)||RM){els.forEach(function(e){e.classList.add("in")});return}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");count(x.target);io.unobserve(x.target)}})},{threshold:.12,rootMargin:"0px 0px -30px 0px"});
+  els.forEach(function(e){io.observe(e)});
+})();
+
+/* form */
+var pkgSel=document.getElementById("pkg"),nameEl=document.getElementById("name"),nameErr=document.getElementById("name-err"),sum=document.getElementById("sum"),btn=document.getElementById("sendbtn"),btxt=document.getElementById("sendtxt");
+function markPkg(){
+  var v=pkgSel.value;
+  document.querySelectorAll(".pk").forEach(function(c){var a=c.querySelector("[data-pkg]");c.classList.toggle("sel",!!a&&a.getAttribute("data-pkg")===v)});
+  document.getElementById("pkg-note").textContent="Таңдалған пакет: "+v;
+}
+pkgSel.addEventListener("change",markPkg);
+document.querySelectorAll("[data-pkg]").forEach(function(a){
+  a.addEventListener("click",function(){
+    var v=a.getAttribute("data-pkg");
+    for(var i=0;i<pkgSel.options.length;i++){if(pkgSel.options[i].text===v){pkgSel.selectedIndex=i}}
+    markPkg();
+    setTimeout(function(){try{nameEl.focus({preventScroll:true})}catch(e){}},500);
+  });
+});
+var errCount=0;
+function checkName(){
+  if(nameEl.value.trim().length>=2){nameErr.textContent="";nameEl.removeAttribute("aria-invalid");return true}
+  errCount++;
+  nameErr.textContent=errCount>=3?"Атыңызды кемі 2 әріппен жазыңыз, мысалы: Ерлан. Қиын болса, төмендегі нөмірге WhatsApp-та жазыңыз":"Атыңызды жазыңыз, мысалы: Ерлан";
+  nameEl.setAttribute("aria-invalid","true");return false;
+}
+nameEl.addEventListener("blur",function(){if(nameEl.value.trim())checkName()});
+nameEl.addEventListener("input",function(){if(nameEl.getAttribute("aria-invalid")&&nameEl.value.trim().length>=2){nameErr.textContent="";nameEl.removeAttribute("aria-invalid");sum.hidden=true}});
+var busy=false;
+document.getElementById("f").addEventListener("submit",function(e){
+  e.preventDefault();if(busy)return;
+  if(!checkName()){sum.innerHTML='Тапсырыс жіберілмеді: <a href="#name">атыңызды жазыңыз</a>';sum.hidden=false;sum.focus();return}
+  sum.hidden=true;
+  var msg="Сәлеметсіз бе! Мен "+nameEl.value.trim()+". «Асабалық өнер» алғым келеді.\nПакет: "+pkgSel.value+"\nТөлем: "+document.getElementById("pay").value;
+  var url="https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg);
+  busy=true;btn.setAttribute("aria-busy","true");btxt.textContent="WhatsApp ашылып жатыр…";
+  document.getElementById("walink").href=url;
+  var w=null;try{w=window.open(url,"_blank")}catch(x){}
+  if(!w){try{window.top.location.href=url}catch(x){}}
+  setTimeout(function(){busy=false;btn.removeAttribute("aria-busy");btxt.textContent="Тапсырысты WhatsApp-қа жіберу";document.getElementById("ok").hidden=false},900);
+});
+sum.addEventListener("click",function(e){if(e.target.tagName==="A"){e.preventDefault();nameEl.focus()}});
+
+/* sticky: hidden while the hero button or the form is visible */
+(function(){
+  var st=document.getElementById("sticky");
+  if(!("IntersectionObserver" in window)){st.classList.remove("hide");return}
+  var vis={};var io=new IntersectionObserver(function(en){en.forEach(function(x){vis[x.target.id]=x.isIntersecting});st.classList.toggle("hide",!!(vis.herobtn||vis.order||vis.moti))},{threshold:0.05});
+  io.observe(document.getElementById("order"));io.observe(document.getElementById("herobtn"));io.observe(document.getElementById("moti"));
+})();
+</script>
+</body>
+</html>
